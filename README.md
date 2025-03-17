@@ -3,6 +3,8 @@
 A simple e-commerce product catalog built with **ReactJS, Tailwind CSS, and React Context API**.  
 It includes features like authentication, product listing, search, filters, shopping cart, wishlist, similar products, and a responsive design.
 
+ Live Link: [https://buy-me-app.netlify.app](https://buy-me-app.netlify.app)
+
 ## Features 🚀
 - 🔍 **Search & Filter:** Find products by name, category, price range, and rating.
 - 🛒 **Shopping Cart:** Add and remove products from the cart.
