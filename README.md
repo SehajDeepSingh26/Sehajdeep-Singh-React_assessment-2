@@ -19,10 +19,10 @@ It includes features like authentication, product listing, search, filters, shop
 ![Home Page](./public/Home.png)
 
 ### 🔑 Signup Page  
-![Signup Page](./public/Signup.png)
+![Signup Page](./public/SignUp.png)
 
 ### ❤️ Wishlist Page  
-![Wishlist Page](./public/Wishlist.png)
+![Wishlist Page](./public/WishList.png)
 
 ### 🛒 Cart Page  
 ![Cart Page](./public/cart.png)
