@@ -57,7 +57,7 @@ const Navbar = () => {
                                     className="flex items-center space-x-2 focus:outline-none"
                                     onClick={() => setShowDropdown(!showDropdown)}
                                 >
-                                    <img src={placeHolder} className="h-9 w-9 rounded-full object-cover border-2 border-gray-300" />
+                                    <img src={user.image} className="h-9 w-9 rounded-full object-cover border-2 border-gray-300" />
                                 </button>
 
                                 {showDropdown && (

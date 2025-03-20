@@ -25,7 +25,12 @@ const AuthProvider = ({ children }) => {
 
                                                                             //^ Hash the password before storing
         const hashedPassword = await hashPassword(password);
-        const newUser = { name, email, password: hashedPassword };
+        const newUser = { 
+            name, 
+            email, 
+            password: hashedPassword,
+            image: `https://api.dicebear.com/5.x/initials/svg?seed=${name}`
+        };
 
         localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
         setUser(newUser);
