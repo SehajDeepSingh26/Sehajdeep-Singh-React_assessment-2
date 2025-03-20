@@ -18,7 +18,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
                         <a href="/" className="text-2xl font-bold text-primary">
-                            <img src="logo.png" alt="logo-Image" className='h-16'/>
+                            <img src="logo.png" alt="logo-Image" className='h-16' />
                             {/* <MirrorText text="Buy-Me-Now" /> */}
                         </a>
                     </div>
@@ -40,31 +40,31 @@ const Navbar = () => {
 
                     {/* //^ Cart, and User */}
                     <div className="hidden md:flex items-center gap-6">
-                        <a href="/cart" className="relative p-2 text-gray-700 hover:text-blue-800 transition-colors">
-                            <ShoppingCart />
+                        {/* Cart Link */}
+                        <a href="/cart" className="relative p-2 text-gray-600 hover:text-blue-700 transition duration-200">
+                            <ShoppingCart className="h-6 w-6" />
                         </a>
 
-                        <a href="/wishlist" className="relative p-2 text-gray-700 hover:text-pink-800">
-                            <FolderHeart />
+                        {/* Wishlist Link */}
+                        <a href="/wishlist" className="relative p-2 text-gray-600 hover:text-pink-700 transition duration-200">
+                            <FolderHeart className="h-6 w-6" />
                         </a>
 
+                        {/* User Profile Dropdown */}
                         {user ? (
                             <div className="relative">
                                 <button
-                                    className="flex items-center space-x-2"
+                                    className="flex items-center space-x-2 focus:outline-none"
                                     onClick={() => setShowDropdown(!showDropdown)}
                                 >
-                                    <img
-                                        src={placeHolder}
-                                        className="h-8 w-8 rounded-full object-cover"
-                                    />
+                                    <img src={placeHolder} className="h-9 w-9 rounded-full object-cover border-2 border-gray-300" />
                                 </button>
 
                                 {showDropdown && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-gray-200 rounded-md py-1 z-10">
+                                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-20">
                                         <button
                                             onClick={logOut}
-                                            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
                                         >
                                             <LogOut size={16} className="mr-2" />
                                             Logout
@@ -73,26 +73,25 @@ const Navbar = () => {
                                 )}
                             </div>
                         ) : (
-                            <>
-
+                            <div className="flex gap-3">
                                 <Link
                                     to="/login"
-                                    className="flex items-center space-x-2 bg-primary px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                                    className="flex items-center gap-2 bg-[#BBF7D0] text-black px-4 py-2 rounded-md hover:bg-[#6EE7B7] transition duration-200"
                                 >
                                     <User size={18} />
                                     <span>Login</span>
                                 </Link>
                                 <Link
                                     to="/signup"
-                                    className="flex items-center space-x-2 bg-primary  px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                                    className="flex items-center gap-2 bg-[#FECDD3] text-black px-4 py-2 rounded-md hover:bg-[#FDA4AF] transition duration-200"
                                 >
                                     <User size={18} />
                                     <span>Sign Up</span>
                                 </Link>
-
-                            </>
+                            </div>
                         )}
                     </div>
+
                 </div>
 
                 {mobileMenuOpen && (
@@ -145,7 +144,7 @@ const Navbar = () => {
 
                                         <Link
                                             to="/login"
-                                            className="flex items-center space-x-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                                            className="flex items-center space-x-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
                                         >
                                             <User size={18} />
                                             <span>Login</span>

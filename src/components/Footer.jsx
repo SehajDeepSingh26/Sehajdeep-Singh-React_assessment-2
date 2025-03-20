@@ -2,12 +2,12 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "luci
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-white pt-12 pb-6">
+        <footer className="bg-gray-900 text-white mt-20 pt-12 pb-6">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* About */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">ShopEase</h3>
+                        <h3 className="text-xl font-bold mb-4">Buy me Now</h3>
                         <p className="text-gray-400 mb-4">
                             Your one-stop destination for all your shopping needs. Quality products, great prices, and excellent customer service.
                         </p>
@@ -89,11 +89,11 @@ const Footer = () => {
                             </li>
                             <li className="flex items-center">
                                 <Phone size={20} className="text-primary mr-2 flex-shrink-0" />
-                                <span className="text-gray-400">(123) 456-7890</span>
+                                <span className="text-gray-400">+91 12345 67890</span>
                             </li>
                             <li className="flex items-center">
                                 <Mail size={20} className="text-primary mr-2 flex-shrink-0" />
-                                <span className="text-gray-400">support@shopease.com</span>
+                                <span className="text-gray-400">support@buyMeNow.com</span>
                             </li>
                         </ul>
                     </div>
