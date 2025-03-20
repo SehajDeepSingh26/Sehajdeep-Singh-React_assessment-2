@@ -10,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import ProductCard from '../components/ProductCard';
+import ProductItem from '../components/ProductItem';
 
 const ProductDetail = () => {
     const { id } = useParams();
@@ -57,35 +57,58 @@ const ProductDetail = () => {
     }
 
     return (
-        <div className='max-w-4xl mx-auto p-6 mt-20'>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mb-5" onClick={handleBack}>{"<- Back"}</button>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <img src={product?.image} alt="product.title" className='w-full h-80 object-contain' />
+        <div className='max-w-4xl mx-auto p-6 '>
+            <button
+                className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors duration-200 mb-8 shadow-sm"
+                onClick={handleBack}
+            >
+                <span>←</span>
+                <span>Back</span>
+            </button>
 
-                <div>
-                    <h2 className="text-2xl font-bold">{product?.title} </h2>
-                    <p className="text-gray-600">{product?.category}</p>
-                    <p className="text-lg font-semibold mt-2">{product?.price}</p>
-                    <p className="text-gray-700 mt-4">{product?.description}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-xl overflow-hidden shadow-md">
+                <div className="bg-gray-50 p-6 flex items-center justify-center">
+                    <img src={product?.image} alt={product?.title} className="w-full h-80 object-contain" />
+                </div>
 
-                    <div className="mt-4 flex items-center">
-                        <span className="text-yellow-500 text-lg">⭐ {product?.rating.rate} </span>
-                        <span className="text-gray-500 ml-2">⭐ {product?.rating.count} reviews </span>
+                <div className="p-6 flex flex-col">
+                    <div className="mb-auto">
+                        <span className="text-sm font-medium text-blue-600 uppercase tracking-wider">{product?.category}</span>
+                        <h2 className="text-2xl font-bold mt-1 text-gray-900">{product?.title}</h2>
+
+                        <div className="flex items-center mt-4 mb-2">
+                            <div className="flex items-center bg-yellow-50 px-3 py-1 rounded-full">
+                                <span className="text-yellow-500 mr-1">★</span>
+                                <span className="font-medium text-gray-800">{product?.rating.rate}</span>
+                                <span className="mx-2 text-gray-300">|</span>
+                                <span className="text-gray-600 text-sm">{product?.rating.count} reviews</span>
+                            </div>
+                        </div>
+
+                        <div className="mt-3 mb-5">
+                            <span className="text-2xl font-bold text-gray-900">${product?.price}</span>
+                        </div>
+
+                        <p className="text-gray-600 leading-relaxed mb-6">{product?.description}</p>
                     </div>
 
-                    <button
-                        className="bg-blue-500 text-white px-4 py-2 mt-2 rounded-md w-full hover:bg-blue-600"
-                        onClick={() => addToCart(product)}
-                    >
-                        Add to Cart
-                    </button>
-                    <button
-                        className="bg-red-500 text-white px-4 py-2 mt-2 rounded-md w-full hover:bg-red-600"
-                        onClick={() => addToWishlist(product)}
-                    >
-                        ❤️ Add to Wishlist
-                    </button>
+                    <div className="space-y-3 mt-4">
+                        <button
+                            className="bg-blue-600 text-white px-6 py-3 rounded-lg w-full hover:bg-blue-700 transition-colors duration-200 font-medium shadow-sm flex items-center justify-center"
+                            onClick={() => addToCart(product)}
+                        >
+                            <span className="mr-2">🛒</span>
+                            Add to Cart
+                        </button>
 
+                        <button
+                            className="bg-white text-gray-800 border border-gray-300 px-6 py-3 rounded-lg w-full hover:bg-gray-50 transition-colors duration-200 font-medium shadow-sm flex items-center justify-center"
+                            onClick={() => addToWishlist(product)}
+                        >
+                            <span className="text-red-500 mr-2">❤️</span>
+                            Add to Wishlist
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -96,7 +119,7 @@ const ProductDetail = () => {
                     slidesPerView={2}
                     loop={true}
                     autoplay={{
-                        delay: 3000,
+                        delay: 2000,
                         disableOnInteraction: false,
                     }}
                     pagination={{ clickable: true }}
@@ -106,7 +129,7 @@ const ProductDetail = () => {
                     {
                         similarProd.map(item => (
                             <SwiperSlide className='ml-10' key={item.id}>
-                                <ProductCard product={item} />
+                                <ProductItem product={item} />
                             </SwiperSlide>
                         ))
                     }

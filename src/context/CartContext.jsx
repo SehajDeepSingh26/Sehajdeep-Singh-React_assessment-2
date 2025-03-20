@@ -32,14 +32,14 @@ const CartProvider = ({ children }) => {
                 .map((item) =>
                     item.id === id ? { ...item, quantity: item.quantity - 1 } : item
                 )
-                .filter((item) => item.quantity > 0)    // Remove item if quantity reaches 0
+                .filter((item) => item.quantity > 0)    //^ Remove item if quantity reaches 0
         );
     };
 
     const deleteFromCart = (id) => {
         toast("Item deleted from cart")
         setCart((prevCart) =>
-            prevCart.filter((item) => item.id !== id)    // Remove item if quantity reaches 0
+            prevCart.filter((item) => item.id !== id)    
         );
     }
 
@@ -59,7 +59,7 @@ const CartProvider = ({ children }) => {
 
     const removeFromWishist = (id) => {
         toast("Item removed from wishlist")
-        setWishlist(prev => prev.filter(item => item.id === id))
+        setWishlist(prev => prev.filter(item => item.id !== id))
     }
 
     return (

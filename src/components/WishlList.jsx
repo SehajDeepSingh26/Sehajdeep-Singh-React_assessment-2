@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import ProductCard from "../components/ProductCard";
 import { CartContext } from "../context/CartContext";
+import ProductItem from "./ProductItem";
 
 const Wishlist = () => {
     const { wishlist } = useContext(CartContext);
 
     return (
-        <div className="p-6 mt-20">
-            <h2 className="text-3xl font-semibold mb-4">My Wishlist</h2>
+        <div className="p-6 min-h-[255px]">
+            <h2 className="text-3xl font-bold mb-4">My Wishlist</h2>
 
             {wishlist.length === 0 ? (
                 <div className="text-center">
@@ -16,7 +16,7 @@ const Wishlist = () => {
             ) : (
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {wishlist.map((product) => (
-                        <ProductCard key={product.id} product={product} />
+                        <ProductItem key={product.id} product={product} wishPage={true}/>
                     ))}
                 </div>
             )}

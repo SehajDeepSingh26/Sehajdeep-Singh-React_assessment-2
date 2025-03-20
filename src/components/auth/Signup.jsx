@@ -21,7 +21,7 @@ const Signup = () => {
         setMessage(response)
     }
     return (
-        <div className="flex justify-center items-center h-full mt-20 ">
+        <div className="flex justify-center items-center h-full ">
             <div className="bg-white p-8 rounded-lg shadow-md w-96 mt-10">
                 <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
                 <form action="" onSubmit={handleSignup}>

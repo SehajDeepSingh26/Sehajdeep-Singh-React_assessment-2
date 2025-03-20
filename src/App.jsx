@@ -3,6 +3,8 @@ import CartProvider from "./context/CartContext"
 import Navbar from "./components/Navbar"
 import AuthProvider from "./context/AuthContext"
 import { Toaster } from "react-hot-toast"
+import NavTemp from "./components/Navbar"
+import Footer from "./components/Footer"
 
 
 function App() {
@@ -14,8 +16,10 @@ function App() {
 
                     <div><Toaster /></div>
 
-                    <Navbar />
+                    {/* <Navbar /> */}
+                    <NavTemp/>
                     <Outlet />
+                    <Footer/>
 
                 </CartProvider>
             </AuthProvider>

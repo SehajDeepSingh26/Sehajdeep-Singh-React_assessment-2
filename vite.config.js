@@ -8,6 +8,13 @@ export default defineConfig({
         react()
     ],
     build: {
-        outDir: 'dist', 
+        outDir: 'dist',
     },
+    theme: {
+        extend: {
+            colors: {
+                foreground: "hsl(var(--foreground))",
+            }
+        },
+    }
 });

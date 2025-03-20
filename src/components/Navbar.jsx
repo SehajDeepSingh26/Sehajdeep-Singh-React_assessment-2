@@ -1,40 +1,172 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/16/solid";
+import { useState, useContext } from 'react'
+import { ShoppingCart, User, LogOut, Menu, X, HeartPulseIcon, FolderHeart } from 'lucide-react'
+import { AuthContext } from '../context/AuthContext'
+import placeHolder from "/placeholder.png"
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+    const [showDropdown, setShowDropdown] = useState(false)
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
     const { user, logOut } = useContext(AuthContext);
-    // console.log("inside navbar")
+
+
 
     return (
-        <nav className="fixed w-full bg-gray-800 text-white p-4 flex justify-between -mt-20 z-50">
-            <Link to="/" className="ml-10 text-4xl font-semibold">Buy-Me</Link>
-            <div className="flex gap-4">
-                <Link to="/wishlist">
-                    <HeartIcon className="w-6 h-6" /> Wishlist
-                </Link>
-                <Link to="/cart">
-                    <ShoppingCartIcon className="w-6 h-6" /> Cart
-                </Link>
+        <header className="sticky top-0 z-50 bg-white shadow-md text-black">
+            <div className="container mx-auto px-4 py-4">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                        <a href="/" className="text-2xl font-bold text-primary">
+                            <img src="logo.png" alt="logo-Image" className='h-16'/>
+                            {/* <MirrorText text="Buy-Me-Now" /> */}
+                        </a>
+                    </div>
 
-                {user ? (
-                    <>
-                        <span>Welcome, {user.name}</span>
-                        <button className="bg-red-500 px-4 py-1 rounded cursor-pointer" onClick={logOut}>Logout</button>
-                    </>
-                ) : (
-                    <>
-                        <Link className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mb-5"
-                            to="/login">Login</Link>
+                    {/* //^ Mobile menu button */}
+                    <button
+                        className="md:hidden"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
 
-                        <Link className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mb-5"
-                            to="/signup">Signup</Link>
-                    </>
+                    <nav className="hidden md:flex items-center space-x-8">
+                        <a href="/" className="text-gray-700 hover:text-primary transition-colors">Home</a>
+                        <a href="#" className="text-gray-700 hover:text-primary transition-colors">Shop</a>
+                        <a href="#" className="text-gray-700 hover:text-primary transition-colors">Categories</a>
+                        <a href="#" className="text-gray-700 hover:text-primary transition-colors">Deals</a>
+                    </nav>
+
+                    {/* //^ Cart, and User */}
+                    <div className="hidden md:flex items-center gap-6">
+                        <a href="/cart" className="relative p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                            <ShoppingCart />
+                        </a>
+
+                        <a href="/wishlist" className="relative p-2 text-gray-700 hover:text-pink-800">
+                            <FolderHeart />
+                        </a>
+
+                        {user ? (
+                            <div className="relative">
+                                <button
+                                    className="flex items-center space-x-2"
+                                    onClick={() => setShowDropdown(!showDropdown)}
+                                >
+                                    <img
+                                        src={placeHolder}
+                                        className="h-8 w-8 rounded-full object-cover"
+                                    />
+                                </button>
+
+                                {showDropdown && (
+                                    <div className="absolute right-0 mt-2 w-48 bg-gray-200 rounded-md py-1 z-10">
+                                        <button
+                                            onClick={logOut}
+                                            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            <LogOut size={16} className="mr-2" />
+                                            Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <>
+
+                                <Link
+                                    to="/login"
+                                    className="flex items-center space-x-2 bg-primary px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                                >
+                                    <User size={18} />
+                                    <span>Login</span>
+                                </Link>
+                                <Link
+                                    to="/signup"
+                                    className="flex items-center space-x-2 bg-primary  px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                                >
+                                    <User size={18} />
+                                    <span>Sign Up</span>
+                                </Link>
+
+                            </>
+                        )}
+                    </div>
+                </div>
+
+                {mobileMenuOpen && (
+                    <div className="md:hidden mt-4 pb-4">
+                        <nav className="flex flex-col space-y-4">
+                            <a href="/" className="text-gray-700 hover:text-primary transition-colors">Home</a>
+                            <a href="#" className="text-gray-700 hover:text-primary transition-colors">Shop</a>
+                            <a href="#" className="text-gray-700 hover:text-primary transition-colors">Categories</a>
+                            <a href="#" className="text-gray-700 hover:text-primary transition-colors">Deals</a>
+                        </nav>
+
+                        <div className="mt-4 space-y-4">
+                            <div className="flex items-center justify-between">
+                                <a href="/cart" className="relative p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                                    <ShoppingCart />
+                                </a>
+                                <a href="/wishlist" className="relative p-2 text-gray-700 hover:text-pink-800 transition-colors">
+                                    <HeartPulseIcon />
+                                </a>
+
+                                {user ? (
+                                    <div className="relative">
+                                        <button
+                                            className="flex items-center space-x-2"
+                                            onClick={() => setShowDropdown(!showDropdown)}
+                                        >
+                                            <img
+                                                src={placeHolder}
+                                                alt={user.name}
+                                                className="h-8 w-8 rounded-full object-cover"
+                                            />
+                                            <span className="text-gray-700">{user.name}</span>
+                                        </button>
+
+                                        {showDropdown && (
+                                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+
+                                                <button
+                                                    onClick={logOut}
+                                                    className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                >
+                                                    <LogOut size={16} className="mr-2" />
+                                                    Logout
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <>
+
+                                        <Link
+                                            to="/login"
+                                            className="flex items-center space-x-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                                        >
+                                            <User size={18} />
+                                            <span>Login</span>
+                                        </Link>
+                                        <Link
+                                            to="/signup"
+                                            className="flex items-center space-x-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                                        >
+                                            <User size={18} />
+                                            <span>Sign Up</span>
+                                        </Link>
+
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
                 )}
             </div>
-        </nav>
-    );
-};
+        </header>
+    )
+}
 
-export default Navbar;
+export default Navbar
