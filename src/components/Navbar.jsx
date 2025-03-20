@@ -144,14 +144,14 @@ const Navbar = () => {
 
                                         <Link
                                             to="/login"
-                                            className="flex items-center space-x-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
+                                            className="flex items-center space-x-2 bg-[#BBF7D0] text-black px-4 py-2 rounded-md hover:bg-[#6EE7B7]  transition-colors"
                                         >
                                             <User size={18} />
                                             <span>Login</span>
                                         </Link>
                                         <Link
                                             to="/signup"
-                                            className="flex items-center space-x-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors"
+                                            className="flex items-center space-x-2 bg-[#FECDD3] text-black px-4 py-2 rounded-md hover:bg-[#FDA4AF] transition-colors"
                                         >
                                             <User size={18} />
                                             <span>Sign Up</span>

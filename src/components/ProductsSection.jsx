@@ -144,7 +144,7 @@ const Home = ({ products }) => {
                     {categories?.map((category) => (
                         <button
                             key={category}
-                            className={`px-4 py-2 rounded-full ${activeCategory === category ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-primary text-black"
+                            className={`px-4 py-2 rounded-full ${activeCategory === category ? "bg-gray-700 text-gray-300 hover:bg-gray-600" : "bg-primary text-black cursor-pointer"
                                 } transition-colors`}
                             onClick={() => setActiveCategory(category)}
                         >

@@ -5,9 +5,11 @@ import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import {useState, useEffect} from "react";
 const ProductItem = ({ product, wishPage = false }) => {
-    const { addToCart, addToWishlist, removeFromWishist } = useContext(CartContext);
+    const { addToCart, addToWishlist, removeFromWishist, wishlist } = useContext(CartContext);
     const navigate = useNavigate();
+    const [insideWishList, setInsideWishList] = useState(false)
 
     const handleClick = () => {
         navigate(`/product/${product?.id}`)
@@ -20,6 +22,18 @@ const ProductItem = ({ product, wishPage = false }) => {
         else
             addToWishlist(product)
     }
+
+    useEffect(() => {
+        const checkInsideWishlist = () => {
+            wishlist.map((item) => {
+                if(item.id === product.id){
+                    setInsideWishList(true)
+                    return;
+                }
+            })
+        }
+        checkInsideWishlist();
+    }, [product])
 
 
     return (
@@ -47,7 +61,7 @@ const ProductItem = ({ product, wishPage = false }) => {
                         onClick={handleWishList}
                         className={`p-2 rounded-md border transition-colors bg-red-50 border-red-200 text-red-500`}
                     >
-                        <Heart size={18} className="fill-red-500" />
+                        <Heart size={18} className={`${insideWishList ? "fill-red-500" : ""}`} />
                     </button>
                 </div>
             </div>
